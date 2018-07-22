@@ -1,3 +1,6 @@
+html
+  font-family: "Lusitana",
+
 body
   background: white
   color: $color_text
@@ -9,7 +12,7 @@ a
   color: $color_link
 
 p
-  font-size: 14pt
+  font-size: 15pt
 
 section.article-content
   ul
@@ -17,15 +20,18 @@ section.article-content
     margin-left: 0
     padding-left: 0
 
+    li
+      padding-left: 1.2em
+      text-indent: -1em
+
+      &:before
+        content: "·"
+        padding-right: 10px
+
   li
     font-size: 13pt
     padding-bottom: 15px
-    padding-left: 1.2em
-    text-indent: -1em
 
-    &:before
-      content: "·"
-      padding-right: 10px
 
 aside h2
   font-size: 12pt
@@ -45,7 +51,7 @@ aside h2
 .page-title,
 .post-title
   font-size: 24px
-  font-weight: 400
+  font-weight: 700
   letter-spacing: 0
   a
     color: $color_text
@@ -61,6 +67,8 @@ aside h2
   letter-spacing: 0
 
 .site-description
+  font-size: 9.5pt
+  letter-spacing: 2px
   opacity: 1
 
 .site-intro .avatar
@@ -84,8 +92,11 @@ aside h2
     content: ''
     width: 0
 
-.post-date a
-  color: $color_text
+.post-date
+  display: inline-block
+  padding-bottom: 30px
+  a
+    color: $color_text
 
 .post-meta li
   border-right: none
