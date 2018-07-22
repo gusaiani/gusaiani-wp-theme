@@ -16,11 +16,53 @@ body
   background: white
   color: $color_text
 
+  &.content-sidebar .content
+    max-width: 720px
+
 a
   color: $color_link
 
+p
+  font-size: 14pt
+
+aside h2
+  font-size: 12pt
+
 .inner-wrap
   background: white
+  max-width: none
+  padding: 0
+
+.widget_recent_entries,
+.widget_archive,
+.widget_categories
+  li:before
+    content: ''
+    width: 0
+
+.post-meta li.categories,
+.post-meta li.author,
+.post-date
+  &:before
+    content: ''
+    width: 0
+
+.post-meta li
+  border-right: none
+  &.comment,
+  &.author
+    display: none
+
+.widget
+  ul,
+  ol
+    li
+      font-size: 10pt
+      padding-bottom: 10px
+      white-space: nowrap
+      overflow: hidden
+      text-overflow: ellipsis
+      width: 100%
 
 @media only screen and (min-width: 769px)
   .header
@@ -36,6 +78,8 @@ a
 
   .site-title
     font-size: 36px
+    font-weight: 400
+    padding: 20px 0 10px
     letter-spacing: 0
 
   .site-description
@@ -50,10 +94,15 @@ a
 
   .page-title,
   .post-title
-    font-size: 32px
+    font-size: 24px
+    font-weight: 400
+    letter-spacing: 0
 
-  .sidebar .widget
-    opacity: 1
+  .sidebar
+    max-width: 260px
+
+    .widget
+      opacity: 1
 
   input[type="submit"],
   .button,
