@@ -1,0 +1,63 @@
+/**!
+ Theme Name:   Gustavo Saiani Blog
+ Theme URI:    http://example.com/gusaiani/
+ Description:  Gustavo Saiani Blog Theme
+ Author:       Gustavo Saiani
+ Author URI:   https://www.gustavosaiani.com
+ Template:     highwind
+ Version:      1.0.0
+ License:      MIT
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  bloggusaiani */
+
+@import "mixins/colors"
+
+body
+  background: white
+  color: $color_text
+
+a
+  color: $color_link
+
+.inner-wrap
+  background: white
+
+@media only screen and (min-width: 769px)
+  .header
+    background: white
+    padding: 40px
+
+  .main-nav
+    border-bottom: none
+
+  .site-title,
+  .site-description
+    color: $color_link
+
+  .site-title
+    font-size: 36px
+    letter-spacing: 0
+
+  .site-description
+    opacity: 1
+
+  .site-intro .avatar
+    border-radius: 6px
+    box-shadow: none
+    width: 60px
+    &:hover
+      transform: none
+
+  .page-title,
+  .post-title
+    font-size: 32px
+
+  .sidebar .widget
+    opacity: 1
+
+  input[type="submit"],
+  .button,
+  input[type="button"],
+  .navigation-post a,
+  .navigation-paging a
+    background: $color_link
