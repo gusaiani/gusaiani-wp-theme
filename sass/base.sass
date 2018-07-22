@@ -1,0 +1,117 @@
+body
+  background: white
+  color: $color_text
+
+  &.content-sidebar .content
+    max-width: 720px
+
+a
+  color: $color_link
+
+p
+  font-size: 14pt
+
+section.article-content
+  ul
+    list-style: none
+    margin-left: 0
+    padding-left: 0
+
+  li
+    font-size: 13pt
+    padding-bottom: 15px
+    padding-left: 1.2em
+    text-indent: -1em
+
+    &:before
+      content: "·"
+      padding-right: 10px
+
+aside h2
+  font-size: 12pt
+
+.header
+  background: white
+  margin-bottom: 0
+
+  p.toggle-container
+    float: right
+
+.inner-wrap
+  background: white
+  max-width: none
+  padding: 0 20px
+
+.page-title,
+.post-title
+  font-size: 24px
+  font-weight: 400
+  letter-spacing: 0
+  a
+    color: $color_text
+
+.site-title,
+.site-description
+  color: $color_text
+
+.site-title
+  font-size: 24px
+  font-weight: 400
+  padding: 20px 0 10px
+  letter-spacing: 0
+
+.site-description
+  opacity: 1
+
+.site-intro .avatar
+  border-radius: 6px
+  box-shadow: none
+  width: 60px
+  &:hover
+    transform: none
+
+.widget_recent_entries,
+.widget_archive,
+.widget_categories
+  li:before
+    content: ''
+    width: 0
+
+.post-meta li.categories,
+.post-meta li.author,
+.post-date
+  &:before
+    content: ''
+    width: 0
+
+.post-date a
+  color: $color_text
+
+.post-meta li
+  border-right: none
+  &.comment,
+  &.author
+    display: none
+
+.widget
+  ul,
+  ol
+    li
+      font-size: 10pt
+      padding-bottom: 10px
+      white-space: nowrap
+      overflow: hidden
+      padding-left: 0
+      text-overflow: ellipsis
+      width: 100%
+
+input[type="submit"],
+input[type="button"],
+.navigation-post a,
+.navigation-paging a
+  background: $color_link
+
+.button
+  background: white
+  color: $color_text
+
