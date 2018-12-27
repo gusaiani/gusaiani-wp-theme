@@ -123,13 +123,42 @@ aside h2
       text-overflow: ellipsis
       width: 100%
 
+.navigation-post
+  .nav-previous,
+  .nav-next
+    max-width: 45%
+
+    a
+      font-weight: 300
+      line-height: 1.5em
+      padding: 0
+
+      &:hover
+        background: transparent
+        box-shadow: none
+        text-decoration: underline
+
+  .nav-previous a:before
+    content: "«"
+    font-family: "Lusitana"
+    width: .5em
+    position: relative
+    top: -1px
+
+  .nav-next a:after
+    content: "»"
+    font-family: "Lusitana"
+    width: .5em
+    position: relative
+    top: -1px
+
 input[type="submit"],
 input[type="button"],
 .navigation-post a,
 .navigation-paging a
-  background: $color_link
+  background: transparent
+  color: $color_link
 
 .button
   background: white
   color: $color_text
-

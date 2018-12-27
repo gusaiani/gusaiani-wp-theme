@@ -12,7 +12,7 @@ It is a child theme of [Highwind](https://wordpress.org/themes/highwind/).
 
 To compile .sass files into .css, first install Sass: `yarn global add sass`
 
-When developing, an easy if not very robust way to have the files compiled as you update the style files is by going to the theme root folder in your terminal and running `sass sass/style.sass ./style.css --watch --poll --no-stop-on-error`
+When developing, an easy if not very robust way to have the files compiled as you update the style files is by going to the theme root folder in your terminal and running `sass --watch sass/style.sass:./style.css --watch --poll`
 
 ### Install
 
