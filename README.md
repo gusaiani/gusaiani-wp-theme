@@ -20,6 +20,6 @@ First, install [Highwind](https://wordpress.org/themes/highwind/) in your themes
 
 Publish a zip file of this theme by going to the theme root directory in your terminal and running `zip -r gusaiani.zip . -x *.git*`.
 
-In your Wordpress admin › Appearance, upload `gusaiani.zip` and activate `Gustavo Saiani Blog`.
+In your Wordpress admin › Appearance › Themes › Add New › Upload Theme, upload `gusaiani.zip` and activate `Gustavo Saiani Blog`.
 
 
