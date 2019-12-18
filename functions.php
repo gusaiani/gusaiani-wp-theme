@@ -1,4 +1,6 @@
 <?php
+require_once( get_stylesheet_directory() . '/framework/gusaiani-init.php' );
+
 add_action('wp_enqueue_scripts', 'my_theme_enqueue_styles');
 function my_theme_enqueue_styles() {
   wp_enqueue_style(
@@ -9,11 +11,8 @@ function my_theme_enqueue_styles() {
 
 if ( ! function_exists( 'gusaiani_add_scripts' ) ) {
 	function gusaiani_add_scripts() {
-		// Register styles
-		wp_register_style( 'lusitana', 'http://fonts.googleapis.com/css?family=Lusitana:400,700' );
-
 		// Enqueue styles
-		wp_enqueue_style( 'gusaiani-styles', get_stylesheet_uri(), array( 'lusitana' ), '1.2.4' );
+		wp_enqueue_style( 'gusaiani-styles', get_stylesheet_uri(), array(), '1.2.4' );
 
 		// Enqueue Scripts
 		wp_enqueue_script( 'gusaiani-plugins', get_template_directory_uri() . '/framework/js/plugins.min.js', array( 'jquery' ), '', true );
