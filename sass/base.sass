@@ -8,10 +8,16 @@ body
   line-height: 1.65em
 
   &.content-sidebar .content
-    max-width: 620px
+    max-width: 1100px
 
 a
   color: $color_link
+
+code,
+pre
+  background-color: rgba(0, 0, 0, 0.03)
+  color: $color_code_text
+  font-weight: 300
 
 p
   font-size: 15pt
@@ -35,6 +41,11 @@ section.article-content
     font-size: 15pt
     padding-bottom: 15px
 
+  a.body-link-to-post
+    color: $color_text
+
+    &:hover
+      cursor: pointer
 
 aside h2
   font-size: 12pt

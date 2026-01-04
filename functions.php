@@ -32,3 +32,11 @@ function remove_highwind_add_scripts() {
 add_action('init', 'remove_highwind_add_scripts');
 add_action( 'wp_enqueue_scripts', 'gusaiani_add_scripts' );
 ?>
+
+<?php
+  // Set excerpt length to 20 words
+function custom_excerpt_length( $length ) {
+    return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 20 );
+?>
