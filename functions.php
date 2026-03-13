@@ -39,4 +39,10 @@ function custom_excerpt_length( $length ) {
     return 20;
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 20 );
+
+// Replace Gravatar with custom avatar
+add_filter('get_avatar_url', 'gusaiani_custom_avatar', 10, 3);
+function gusaiani_custom_avatar($url, $id_or_email, $args) {
+    return '/wp-content/uploads/2026/03/header-image.jpeg';
+}
 ?>
