@@ -389,6 +389,10 @@ body:not(.single) article.page
       color: var(--muted)
       margin: 0
 
+      /* Excerpts keep the line breaks of the post, so a poem stays a poem. */
+      & + p
+        margin-top: 0.75rem
+
   .post-meta
     margin: 1rem 0 0
     padding: 0
