@@ -1,27 +1,552 @@
+/* ──────────────────────────────────────────────────────────────
+   Typefaces: Plau retail variable fonts, self-hosted.
+   Kimura Sans carries the whole system (opsz 12-72 means display
+   sizes pick up the tighter cut on their own). Carbona's MONO axis
+   gives a mono that belongs to the same family as the text face.
+   ────────────────────────────────────────────────────────────── */
+
+@font-face
+  font-family: "Kimura Sans"
+  src: url("fonts/KimuraSansVF.woff2") format("woff2")
+  font-weight: 100 900
+  font-style: normal
+  font-display: swap
+
+@font-face
+  font-family: "Carbona"
+  src: url("fonts/CarbonaVF.woff2") format("woff2")
+  font-weight: 200 900
+  font-style: normal
+  font-display: swap
+
+:root
+  --paper: #{$paper}
+  --canvas: #{$canvas}
+  --gray: #{$gray}
+  --ink: #{$ink}
+  --muted: #{$muted}
+  --rule: #{$rule}
+  --rule-strong: #{$rule_strong}
+  --rule-on-plane: #{$rule_on_plane}
+  --hot: #{$hot}
+  --gold: #{$gold}
+  --bar: #{$bar}
+  --bar-ink: #{$bar_ink}
+  --bar-muted: #{$bar_muted}
+  --bar-line: #{$bar_line}
+  --max-width: #{$max_width}
+  --nav-height: 60px
+  --font-kimura: "Kimura Sans", "Helvetica Neue", Arial, sans-serif
+  --font-carbona: "Carbona", ui-monospace, "SF Mono", Menlo, monospace
+
+
+/* ── BASE ── */
+
 html
-  font-family: Georgia, Cambria, serif
-  -webkit-font-smoothing: antialiased
+  font-family: var(--font-kimura)
+  font-weight: 400
+  background: var(--paper)
+  color-scheme: light
+  scroll-behavior: smooth
 
 body
-  background: white
-  color: $color_text
-  line-height: 1.65em
+  font-family: var(--font-kimura)
+  font-optical-sizing: auto
+  background: var(--paper)
+  color: var(--ink)
+  line-height: 1.65
+  font-size: 1em
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
 
   &.content-sidebar .content
-    max-width: 1100px
+    max-width: none
+
+h1, h2, h3, h4, h5, h6, .heading, .alpha, .beta, .gamma, .delta
+  font-family: var(--font-kimura)
+  color: var(--ink)
 
 a
-  color: $color_link
+  color: inherit
+  text-decoration: none
 
-code,
-pre
-  background-color: rgba(0, 0, 0, 0.03)
-  color: $color_code_text
-  font-weight: 300
+img
+  max-width: 100%
 
-p
-  font-size: 15pt
-  line-height: 1.6em
+.visually-hidden
+  position: absolute
+  width: 1px
+  height: 1px
+  margin: -1px
+  padding: 0
+  overflow: hidden
+  clip-path: inset(50%)
+  white-space: nowrap
+  border: 0
+
+
+/* ── WRAPPERS ──
+   Highwind wraps everything in .outer-wrap > .inner-wrap and floats
+   .content / .sidebar inside .content-wrapper. The header also carries
+   .content-wrapper, so every layout override is scoped away from it. */
+
+.outer-wrap
+  background: var(--paper)
+  padding-top: var(--nav-height)
+
+.inner-wrap
+  background: var(--paper)
+  max-width: none
+  margin: 0
+  padding: 0
+
+.content-wrapper:not(.header)
+  max-width: var(--max-width)
+  margin: 0 auto
+  padding: 0 2rem
+
+  &:before,
+  &:after
+    display: none
+
+.content
+  padding-bottom: 3rem
+
+/* Highwind decorates dates, meta and widget items with FontAwesome
+   glyphs it never loads. Strip them. */
+.post-date:before,
+.post-meta li:before,
+.widget li:before,
+.sticky .post-date:before
+  content: ''
+  width: 0
+  display: none
+
+/* Below the hero rule, and on inner pages below the bar. */
+.content-wrapper:not(.header)
+  padding-top: 3.5rem
+
+
+/* ── TOP BAR ──
+   The one fixed element, and the one mark that carries pigment. */
+
+.nav
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 100
+  padding: 0 2rem
+  background: var(--bar)
+  color: var(--bar-ink)
+
+.admin-bar .nav
+  top: 32px
+
+.nav-inner
+  max-width: var(--max-width)
+  margin: 0 auto
+  display: flex
+  align-items: center
+  justify-content: space-between
+  height: var(--nav-height)
+
+.nav-logo
+  background: var(--hot)
+  color: var(--paper)
+  padding: 0.55rem 0.85rem 0.475rem
+  font-size: 0.9375rem
+  font-weight: 700
+  letter-spacing: 0.18em
+  text-transform: uppercase
+  line-height: 1
+
+.nav-links
+  display: flex
+  gap: 1.75rem
+  list-style: none
+  margin: 0
+  padding: 0
+
+  li
+    margin: 0
+    padding: 0
+
+    &:before
+      content: ''
+      width: 0
+
+  a
+    font-size: 0.75rem
+    font-weight: 500
+    color: var(--bar-muted)
+    letter-spacing: 0.14em
+    text-transform: uppercase
+    transition: color 0.2s
+
+    &:hover
+      color: var(--gold)
+
+  a.is-current
+    color: var(--bar-ink)
+
+
+/* ── HERO ──
+   Only on the blog index. Inner pages get the bar and nothing else. */
+
+.header
+  background: var(--paper)
+  margin: 0
+  padding: 0
+  border: none
+
+  &:before,
+  &:after
+    display: none
+
+.home .header
+  padding: 3.25rem 2rem 3rem
+  border-bottom: 1px solid var(--rule)
+
+.hero-content
+  max-width: var(--max-width)
+  width: 100%
+  margin: 0 auto
+
+.hero-top
+  display: flex
+  align-items: center
+  gap: 3rem
+
+.hero-text
+  flex: 1
+  position: relative
+  top: 20px
+
+.hero-photo-wrap
+  flex-shrink: 0
+
+.hero-photo
+  width: 150px
+  height: 150px
+  border-radius: 50%
+  object-fit: cover
+  object-position: center 20%
+  border: 1px solid var(--rule-strong)
+  box-shadow: none
+
+.hero-label
+  font-size: 0.6875rem
+  font-weight: 500
+  letter-spacing: 0.3em
+  text-transform: uppercase
+  color: var(--ink)
+  margin-bottom: 1.5rem
+  line-height: 1.5
+
+.hero-title
+  font-size: clamp(1rem, 1.6vw, 1.1875rem)
+  font-weight: 400
+  color: var(--muted)
+  max-width: 620px
+  line-height: 1.7
+
+  p
+    font-size: inherit
+    line-height: inherit
+    margin: 0
+
+  a
+    color: var(--ink)
+    font-weight: 500
+    border-bottom: 2px solid var(--hot)
+    transition: background 0.2s
+
+    &:hover
+      background: rgba(226, 58, 46, 0.12)
+
+.hero-meta
+  display: flex
+  gap: 1.5rem
+  margin-top: 1.5rem
+  flex-wrap: wrap
+
+.hero-meta-item
+  font-size: 0.75rem
+  color: var(--muted)
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+  svg
+    width: 14px
+    height: 14px
+    opacity: 0.7
+
+  a
+    color: var(--ink)
+    transition: color 0.2s
+
+    &:hover
+      color: var(--hot)
+
+
+/* ── SECTION HEADERS ── */
+
+.section-header
+  margin-bottom: 2rem
+
+.section-label
+  font-size: 0.6875rem
+  font-weight: 600
+  letter-spacing: 0.24em
+  text-transform: uppercase
+  color: var(--ink)
+  margin-bottom: 0.875rem
+
+  /* 1cap makes the square exactly cap-height, so it shares top and
+     bottom edges with the letters next to it. */
+  &:before
+    content: ""
+    display: inline-block
+    width: 0.72em
+    height: 0.72em
+    width: 1cap
+    height: 1cap
+    margin-right: 0.75em
+    vertical-align: baseline
+    background: var(--hot)
+
+.section-title,
+.archive-title,
+.archive-header,
+.entry-title
+  font-size: clamp(1.75rem, 4vw, 2.5rem)
+  font-weight: 900
+  letter-spacing: -0.03em
+  line-height: 1.1
+  color: var(--ink)
+  margin-bottom: 2rem
+
+  span
+    font-weight: 900
+
+.page-header
+  margin-bottom: 2rem
+
+  p
+    font-size: 0.9375rem
+    color: var(--muted)
+
+
+/* ── POST CARDS (index, archive, search) ──
+   Hairline edge, 8px radius, a flat offset shadow instead of a blur. */
+
+body:not(.single) .post-wrap
+  display: grid
+  grid-template-columns: 1fr
+  gap: 1.75rem
+  align-items: start
+
+body:not(.single) article.post,
+body:not(.single) article.page
+  background: var(--canvas)
+  border: 1px solid var(--rule-strong)
+  border-radius: 8px
+  padding: 1.375rem 1.5rem 1.5rem
+  margin: 0
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease
+
+  &:hover
+    transform: translate(-3px, -3px)
+    border-color: var(--ink)
+    box-shadow: 6px 6px 0 rgba(23, 21, 26, 0.1)
+
+  .post-header
+    margin: 0
+
+  .post-date
+    font-size: 0.6875rem
+    font-weight: 500
+    letter-spacing: 0.16em
+    text-transform: uppercase
+    color: var(--muted)
+    display: block
+    padding: 0
+    margin-bottom: 0.625rem
+
+  .post-title
+    font-size: 1.25rem
+    font-weight: 900
+    letter-spacing: -0.02em
+    line-height: 1.25
+    margin-bottom: 0.625rem
+
+  .article-content
+    p
+      font-size: 0.875rem
+      line-height: 1.7
+      color: var(--muted)
+      margin: 0
+
+  .post-meta
+    margin: 1rem 0 0
+    padding: 0
+
+    ul
+      display: flex
+      flex-wrap: wrap
+      gap: 0.375rem
+      margin: 0
+      padding: 0
+      list-style: none
+
+    li
+      margin: 0
+      padding: 0
+      border: none
+      font-size: 0.6875rem
+
+      &:before
+        content: ''
+        width: 0
+
+    li.categories a
+      display: inline-block
+      font-size: 0.6875rem
+      font-weight: 500
+      letter-spacing: 0.04em
+      padding: 0.25rem 0.5rem
+      background: var(--gray)
+      color: var(--ink)
+      transition: background 0.2s, color 0.2s
+
+      &:hover
+        background: var(--ink)
+        color: var(--paper)
+
+    li.comment,
+    li.author
+      display: none
+
+
+/* ── SINGLE POST ── */
+
+.post-title
+  color: var(--ink)
+
+  a
+    color: var(--ink)
+
+.single .post-header
+  margin-bottom: 2rem
+
+.single .post-date
+  font-size: 0.6875rem
+  font-weight: 500
+  letter-spacing: 0.16em
+  text-transform: uppercase
+  color: var(--muted)
+  display: block
+  padding: 0
+  margin-bottom: 0.875rem
+
+  a
+    color: var(--muted)
+
+.single .post-title,
+.page .post-title,
+.page-title
+  font-size: clamp(1.75rem, 4vw, 2.5rem)
+  font-weight: 900
+  letter-spacing: -0.03em
+  line-height: 1.1
+  margin-bottom: 0
+
+.single .article-content,
+.page .article-content
+  max-width: 680px
+
+  p,
+  li
+    font-size: 1.0625rem
+    line-height: 1.75
+    color: var(--ink)
+
+  p
+    margin-bottom: 1.25rem
+
+  h1, h2, h3, h4
+    font-weight: 900
+    letter-spacing: -0.02em
+    line-height: 1.2
+    margin: 2.25rem 0 0.875rem
+
+  h2
+    font-size: 1.5rem
+
+  h3
+    font-size: 1.1875rem
+
+  a
+    color: var(--ink)
+    font-weight: 500
+    border-bottom: 2px solid var(--hot)
+    transition: background 0.2s
+
+    &:hover
+      background: rgba(226, 58, 46, 0.12)
+
+  blockquote
+    border-left: 3px solid var(--gold)
+    padding-left: 1.25rem
+    margin: 1.75rem 0
+    color: var(--muted)
+    font-style: normal
+
+  img
+    border-radius: 8px
+    border: 1px solid var(--rule-strong)
+
+.single .post-meta,
+.page .post-meta
+  margin-top: 2.5rem
+  padding-top: 1.25rem
+  border-top: 1px solid var(--rule)
+
+  ul
+    display: flex
+    flex-wrap: wrap
+    gap: 0.375rem
+    margin: 0
+    padding: 0
+    list-style: none
+
+  li
+    margin: 0
+    padding: 0
+    border: none
+
+    &:before
+      content: ''
+      width: 0
+
+  li.categories a
+    display: inline-block
+    font-size: 0.6875rem
+    font-weight: 500
+    letter-spacing: 0.04em
+    padding: 0.25rem 0.5rem
+    background: var(--gray)
+    color: var(--ink)
+
+  li.comment,
+  li.author
+    display: none
+
+
+/* ── LISTS INSIDE POSTS ──
+   Highwind's bullets replaced with a middot, kept from the old theme. */
 
 section.article-content
   ul
@@ -37,140 +562,356 @@ section.article-content
         content: "·"
         padding-right: 10px
 
-  li
-    font-size: 15pt
-    padding-bottom: 15px
-
   a.body-link-to-post
-    color: $color_text
+    color: inherit
+    display: block
 
     &:hover
       cursor: pointer
 
-aside h2
-  font-size: 12pt
 
-.header
-  background: white
-  margin-bottom: 0
+/* ── CODE ──
+   Carbona with the MONO axis pushed to 100, so the mono belongs
+   to the system instead of falling back to the OS monospace. */
 
-  p.toggle-container
-    float: right
-
-.inner-wrap
-  background: white
-  max-width: none
-  padding: 0 20px
-
-.page-title,
-.post-title
-  font-size: 24px
-  font-weight: 700
-  letter-spacing: 0
-  line-height: 1.5em
-  a
-    color: $color_text
-
-.site-title,
-.site-description
-  color: $color_text
-
-.site-title
-  font-size: 24px
+code,
+pre,
+kbd,
+tt
+  font-family: var(--font-carbona)
+  font-variation-settings: "MONO" 100
+  background: var(--gray)
+  color: var(--ink)
   font-weight: 400
-  padding: 20px 0 10px
-  letter-spacing: 0
+  border: none
 
-.site-description
-  font-size: 9.5pt
-  letter-spacing: 2px
-  opacity: 1
+code
+  font-size: 0.9em
+  padding: 0.1em 0.35em
 
-.site-intro .avatar
-  border-radius: 6px
-  box-shadow: none
-  width: 60px
-  &:hover
-    transform: none
+pre
+  padding: 1rem 1.25rem
+  border-radius: 8px
+  overflow-x: auto
+  line-height: 1.6
 
-.widget_recent_entries,
-.widget_archive,
-.widget_categories
-  li:before
-    content: ''
-    width: 0
+  code
+    padding: 0
+    background: none
 
-.post-meta,
-.post-date
-  font-size: 1em
 
-.post-meta li.categories,
-.post-meta li.author,
-.post-date
-  &:before
-    content: ''
-    width: 0
+/* ── POST NAVIGATION ── */
 
-.post-date
-  display: inline-block
-  padding-bottom: 30px
-  a
-    color: $color_text
+.navigation-post,
+.navigation-paging
+  margin-top: 3rem
+  padding-top: 1.5rem
+  border-top: 1px solid var(--rule)
 
-.post-meta li
-  border-right: none
-  &.comment,
-  &.author
-    display: none
-
-.widget
-  ul,
-  ol
-    li
-      font-size: 12pt
-      padding-bottom: 10px
-      white-space: nowrap
-      overflow: hidden
-      padding-left: 0
-      text-overflow: ellipsis
-      width: 100%
-
-.navigation-post
   .nav-previous,
   .nav-next
     max-width: 45%
 
-    a
-      font-weight: 300
-      line-height: 1.5em
-      padding: 0
+  a
+    font-size: 0.6875rem
+    font-weight: 600
+    letter-spacing: 0.14em
+    text-transform: uppercase
+    color: var(--ink)
+    background: transparent
+    padding: 0.625rem 1rem
+    border: 1px solid var(--rule-strong)
+    line-height: 1
+    transition: border-color 0.2s, background 0.2s, color 0.2s
 
-      &:hover
-        background: transparent
-        box-shadow: none
-        text-decoration: underline
+    &:hover
+      background: var(--gold)
+      border-color: var(--gold)
+      color: var(--ink)
+      box-shadow: none
+      text-decoration: none
 
   .nav-previous a:before
-    content: "«"
-    font-family: "Lusitana"
-    width: .5em
-    position: relative
-    top: -1px
+    content: "\00AB"
+    padding-right: 0.5em
 
   .nav-next a:after
-    content: "»"
-    font-family: "Lusitana"
-    width: .5em
-    position: relative
-    top: -1px
+    content: "\00BB"
+    padding-left: 0.5em
+
+
+/* ── SIDEBAR ── */
+
+.sidebar
+  font-size: 1em
+
+  .widget
+    opacity: 1
+    margin-bottom: 2.25rem
+
+  h2,
+  h3,
+  .widget-title,
+  .wp-block-heading
+    font-size: 0.6875rem
+    font-weight: 700
+    letter-spacing: 0.2em
+    text-transform: uppercase
+    color: var(--ink)
+    margin-bottom: 1rem
+    padding-bottom: 0.625rem
+    border-bottom: 1px solid var(--rule)
+
+    &:before
+      content: ""
+      display: inline-block
+      width: 0.72em
+      height: 0.72em
+      width: 1cap
+      height: 1cap
+      margin-right: 0.75em
+      vertical-align: baseline
+      background: var(--hot)
+
+  ul,
+  ol
+    list-style: none
+    margin: 0
+    padding: 0
+
+    li
+      font-size: 0.8125rem
+      line-height: 1.5
+      margin: 0
+      padding: 0 0 0.75rem 0
+      white-space: normal
+      width: 100%
+
+      &:before
+        content: ''
+        width: 0
+
+  a
+    color: var(--ink)
+    transition: color 0.2s
+
+    &:hover
+      color: var(--hot)
+
+  .wp-block-latest-comments,
+  p
+    font-size: 0.8125rem
+    color: var(--muted)
+
+
+/* ── SEARCH ── */
+
+.wp-block-search__label,
+.searchform label
+  font-size: 0.6875rem
+  font-weight: 700
+  letter-spacing: 0.2em
+  text-transform: uppercase
+  color: var(--ink)
+  margin-bottom: 1rem
+  padding-bottom: 0.625rem
+  border-bottom: 1px solid var(--rule)
+  display: block
+
+  &:before
+    content: ""
+    display: inline-block
+    width: 0.72em
+    height: 0.72em
+    width: 1cap
+    height: 1cap
+    margin-right: 0.75em
+    vertical-align: baseline
+    background: var(--hot)
+
+.wp-block-search__inside-wrapper
+  gap: 0
+
+input[type="search"],
+input[type="text"],
+input[type="email"],
+input[type="url"],
+textarea
+  font-family: var(--font-kimura)
+  font-size: 0.8125rem
+  color: var(--ink)
+  background: var(--canvas)
+  border: 1px solid var(--rule-strong)
+  border-radius: 0
+  box-shadow: none
+  padding: 0.5rem 0.625rem
+
+  &:focus
+    border-color: var(--ink)
+    outline: none
 
 input[type="submit"],
 input[type="button"],
-.navigation-post a,
-.navigation-paging a
-  background: transparent
-  color: $color_link
-
+button,
+.wp-block-search__button,
 .button
-  background: white
-  color: $color_text
+  font-family: var(--font-kimura)
+  font-size: 0.6875rem
+  font-weight: 600
+  letter-spacing: 0.14em
+  text-transform: uppercase
+  background: var(--ink)
+  color: var(--paper)
+  border: none
+  border-radius: 0
+  box-shadow: none
+  padding: 0.625rem 1rem
+  cursor: pointer
+  transition: background 0.2s, color 0.2s
+
+  &:hover
+    background: var(--gold)
+    color: var(--ink)
+
+
+/* ── COMMENTS ── */
+
+.comments-title,
+#reply-title
+  font-size: 0.6875rem
+  font-weight: 700
+  letter-spacing: 0.2em
+  text-transform: uppercase
+  color: var(--ink)
+  margin-bottom: 1.25rem
+
+  &:before
+    content: ""
+    display: inline-block
+    width: 0.72em
+    height: 0.72em
+    width: 1cap
+    height: 1cap
+    margin-right: 0.75em
+    vertical-align: baseline
+    background: var(--hot)
+
+/* Highwind sizes checkboxes like text inputs. */
+input[type="checkbox"],
+input[type="radio"]
+  width: auto
+  height: auto
+  padding: 0
+  border: none
+  background: none
+  box-shadow: none
+
+.commentlist
+  list-style: none
+  margin-left: 0
+  padding-left: 0
+
+
+/* ── FOOTER ──
+   The dark bar returns, bookending the page against the top bar. */
+
+.site-footer
+  padding: 4.5rem 2rem
+  background: var(--bar)
+  color: var(--bar-ink)
+
+.site-footer-inner
+  max-width: var(--max-width)
+  margin: 0 auto
+  display: flex
+  justify-content: space-between
+  align-items: flex-end
+  gap: 2rem
+
+.site-footer-contact h2
+  font-size: clamp(1.75rem, 4vw, 2.5rem)
+  font-weight: 900
+  letter-spacing: -0.03em
+  line-height: 1.1
+  color: var(--bar-ink)
+  margin-bottom: 1.75rem
+
+.site-footer-links
+  display: flex
+  flex-wrap: wrap
+  gap: 0.625rem
+
+.site-footer-link
+  font-size: 0.6875rem
+  font-weight: 600
+  letter-spacing: 0.14em
+  text-transform: uppercase
+  color: var(--bar-muted)
+  padding: 0.625rem 1rem
+  border: 1px solid var(--bar-line)
+  transition: border-color 0.2s, color 0.2s, background 0.2s
+
+  &:hover
+    border-color: var(--gold)
+    background: var(--gold)
+    color: var(--ink)
+
+.site-footer-copy
+  font-size: 0.6875rem
+  letter-spacing: 0.08em
+  color: var(--bar-muted)
+  margin: 0
+
+
+/* ── RESPONSIVE ── */
+
+@media (max-width: 900px)
+  .hero-top
+    flex-direction: column-reverse
+    align-items: flex-start
+    gap: 1.75rem
+
+  .hero-text
+    top: 0
+
+  .hero-photo
+    width: 118px
+    height: 118px
+
+  .site-footer-inner
+    flex-direction: column
+    align-items: flex-start
+    gap: 2rem
+
+@media (max-width: 600px)
+  .nav
+    padding: 0 1.25rem
+
+  .nav-links
+    display: none
+
+  .home .header
+    padding: 2.5rem 1.25rem 2rem
+
+  .content-wrapper:not(.header)
+    padding-left: 1.25rem
+    padding-right: 1.25rem
+    padding-top: 2.5rem
+
+  .hero-photo
+    width: 96px
+    height: 96px
+
+  .hero-meta
+    flex-direction: column
+    gap: 0.75rem
+
+  .site-footer
+    padding: 3rem 1.25rem
+
+@media (prefers-reduced-motion: reduce)
+  *,
+  *:before,
+  *:after
+    animation: none !important
+    transition: none !important
