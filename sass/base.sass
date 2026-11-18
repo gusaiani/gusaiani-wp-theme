@@ -400,6 +400,7 @@ body:not(.single) article.page
   border-radius: 8px
   padding: 1.375rem 1.5rem 1.5rem
   margin: 0
+  position: relative
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease
 
   &:hover
@@ -424,6 +425,18 @@ body:not(.single) article.page
     font-weight: 700
     line-height: 1.25
     margin-bottom: 0.625rem
+
+    /* Stretched link: the title's anchor covers the whole card, so a
+       click anywhere opens the post. Category chips sit above it.
+       Highwind makes headings position: relative, which would trap
+       the overlay inside the title, so the title goes back to static. */
+    position: static
+
+    a::after
+      content: ""
+      position: absolute
+      inset: 0
+      z-index: 1
 
   .article-content
     p
@@ -464,6 +477,8 @@ body:not(.single) article.page
       gap: 0.5rem
 
     li.categories a
+      position: relative
+      z-index: 2
       display: inline-block
       font-size: 0.6875rem
       font-weight: 500
