@@ -12,7 +12,7 @@ function my_theme_enqueue_styles() {
 if ( ! function_exists( 'gusaiani_add_scripts' ) ) {
 	function gusaiani_add_scripts() {
 		// Enqueue styles
-		wp_enqueue_style( 'gusaiani-styles', get_stylesheet_uri(), array(), '2.0.2' );
+		wp_enqueue_style( 'gusaiani-styles', get_stylesheet_uri(), array(), '2.0.3' );
 
 		// Enqueue Scripts
 		wp_enqueue_script( 'gusaiani-plugins', get_template_directory_uri() . '/framework/js/plugins.min.js', array( 'jquery' ), '', true );

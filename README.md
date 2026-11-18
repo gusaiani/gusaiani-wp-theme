@@ -42,9 +42,10 @@ Three pieces of markup are added on top of Highwind, all defined in
 
 | Piece | Hook | Notes |
 | --- | --- | --- |
-| `gusaiani_top_bar()` | `highwind_body_top` | Fixed bar, vermilion wordmark, links back to the sections of the main site. Replaces Highwind's skip link and slide-out nav, both of which are unhooked. |
+| `gusaiani_top_bar()` | `highwind_body_top` | Fixed bar, vermilion "Gustavo Saiani Blog" wordmark (hardcoded, linking to the blog home), links back to the sections of the main site. The links are dropped below 768px so the wordmark never wraps. Replaces Highwind's skip link and slide-out nav, both of which are unhooked. |
 | `highwind_site_title()` | `highwind_header` | Overridden to render the hero (kicker, blurb, contact row, avatar). Index only, the way the main site carries its hero on its one page. |
 | `gusaiani_index_section_header()` | `highwind_content_top` | The label / title pair above the post list; just the kicker on archives and search. |
+| `highwind_post_meta()` | `highwind_entry_bottom` | Overridden to print the category chips as bare links with no separator (Highwind's `the_category( ', ' )` leaves literal commas, and an empty separator makes core emit a `<ul>`). Chips are spaced 8px apart by a flex gap on `li.categories`, and do not underline on hover. Index and single posts share it. |
 | `gusaiani_site_footer()` | `highwind_body_bottom` | The dark footer bar, outside `.outer-wrap` so it runs full bleed. |
 
 Posts render as cards on the index, archives and search (two columns above
