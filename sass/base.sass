@@ -53,6 +53,13 @@
 
 /* ── BASE ── */
 
+/* No tracking anywhere. !important so Highwind and core block styles
+   cannot add it back. */
+*,
+*::before,
+*::after
+  letter-spacing: 0 !important
+
 html
   font-family: var(--font-text)
   font-weight: 400
@@ -186,7 +193,6 @@ img
   font-family: var(--font-text)
   font-size: 0.9375rem
   font-weight: 700
-  letter-spacing: 0.18em
   text-transform: uppercase
   line-height: 1
   text-decoration: none
@@ -223,7 +229,6 @@ img
     font-size: 0.75rem
     font-weight: 500
     color: var(--bar-muted)
-    letter-spacing: 0.14em
     text-transform: uppercase
     transition: color 0.2s
 
@@ -281,7 +286,6 @@ img
 .hero-label
   font-size: 0.6875rem
   font-weight: 500
-  letter-spacing: 0.3em
   text-transform: uppercase
   color: var(--ink)
   margin-bottom: 1.5rem
@@ -342,7 +346,6 @@ img
 .section-label
   font-size: 0.6875rem
   font-weight: 600
-  letter-spacing: 0.24em
   text-transform: uppercase
   color: var(--ink)
   margin-bottom: 0.875rem
@@ -366,7 +369,6 @@ img
 .entry-title
   font-size: clamp(1.75rem, 4vw, 2.5rem)
   font-weight: 700
-  letter-spacing: -0.03em
   line-height: 1.1
   color: var(--ink)
   margin-bottom: 2rem
@@ -411,7 +413,6 @@ body:not(.single) article.page
   .post-date
     font-size: 0.6875rem
     font-weight: 500
-    letter-spacing: 0.16em
     text-transform: uppercase
     color: var(--muted)
     display: block
@@ -421,7 +422,6 @@ body:not(.single) article.page
   .post-title
     font-size: 1.25rem
     font-weight: 700
-    letter-spacing: -0.02em
     line-height: 1.25
     margin-bottom: 0.625rem
 
@@ -467,7 +467,6 @@ body:not(.single) article.page
       display: inline-block
       font-size: 0.6875rem
       font-weight: 500
-      letter-spacing: 0.04em
       padding: 0.25rem 0.5rem
       background: var(--gray)
       color: var(--ink)
@@ -497,7 +496,6 @@ body:not(.single) article.page
 .single .post-date
   font-size: 0.6875rem
   font-weight: 500
-  letter-spacing: 0.16em
   text-transform: uppercase
   color: var(--muted)
   display: block
@@ -512,7 +510,6 @@ body:not(.single) article.page
 .page-title
   font-size: clamp(1.75rem, 4vw, 2.5rem)
   font-weight: 700
-  letter-spacing: -0.03em
   line-height: 1.1
   margin-bottom: 0
 
@@ -531,7 +528,6 @@ body:not(.single) article.page
 
   h1, h2, h3, h4
     font-weight: 700
-    letter-spacing: -0.02em
     line-height: 1.2
     margin: 2.25rem 0 0.875rem
 
@@ -593,7 +589,6 @@ body:not(.single) article.page
     display: inline-block
     font-size: 0.6875rem
     font-weight: 500
-    letter-spacing: 0.04em
     padding: 0.25rem 0.5rem
     background: var(--gray)
     color: var(--ink)
@@ -676,7 +671,6 @@ pre
   a
     font-size: 0.6875rem
     font-weight: 600
-    letter-spacing: 0.14em
     text-transform: uppercase
     color: var(--ink)
     background: transparent
@@ -716,7 +710,6 @@ pre
   .wp-block-heading
     font-size: 0.6875rem
     font-weight: 700
-    letter-spacing: 0.2em
     text-transform: uppercase
     color: var(--ink)
     margin-bottom: 1rem
@@ -771,7 +764,6 @@ pre
 .searchform label
   font-size: 0.6875rem
   font-weight: 700
-  letter-spacing: 0.2em
   text-transform: uppercase
   color: var(--ink)
   margin-bottom: 1rem
@@ -833,7 +825,6 @@ button,
 #reply-title
   font-size: 0.6875rem
   font-weight: 700
-  letter-spacing: 0.2em
   text-transform: uppercase
   color: var(--ink)
   margin-bottom: 1.25rem
@@ -884,7 +875,6 @@ input[type="radio"]
 .site-footer-contact h2
   font-size: clamp(1.75rem, 4vw, 2.5rem)
   font-weight: 700
-  letter-spacing: -0.03em
   line-height: 1.1
   color: var(--bar-ink)
   margin-bottom: 1.75rem
@@ -897,7 +887,6 @@ input[type="radio"]
 .site-footer-link
   font-size: 0.6875rem
   font-weight: 600
-  letter-spacing: 0.14em
   text-transform: uppercase
   color: var(--bar-muted)
   padding: 0.625rem 1rem
@@ -911,7 +900,6 @@ input[type="radio"]
 
 .site-footer-copy
   font-size: 0.6875rem
-  letter-spacing: 0.08em
   color: var(--bar-muted)
   margin: 0
 

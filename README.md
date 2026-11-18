@@ -24,6 +24,10 @@ Vinila's `wdth` axis defaults to 75, which is condensed. Its `@font-face`
 declares `font-stretch: 75% 125%` so that `font-stretch: normal` renders the
 100 width instead of falling back to the condensed default.
 
+No text is tracked. A `* { letter-spacing: 0 !important }` rule at the top of
+`sass/base.sass` zeroes it everywhere, including Highwind's and core block
+styles, so do not add `letter-spacing` declarations back.
+
 **Colour.** Tokens live in `sass/mixins/colors.sass` and are re-exported as CSS
 custom properties on `:root`. Colour lives in planes and marks, never in body
 text: vermilion `#e23a2e` is identity (the wordmark, the section squares, the
