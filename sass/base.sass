@@ -29,6 +29,7 @@
   --rule-strong: #{$rule_strong}
   --rule-on-plane: #{$rule_on_plane}
   --hot: #{$hot}
+  --hot-dark: #{$hot_dark}
   --gold: #{$gold}
   --bar: #{$bar}
   --bar-ink: #{$bar_ink}
@@ -151,15 +152,33 @@ img
   justify-content: space-between
   height: var(--nav-height)
 
-.nav-logo
+/* The vermilion block. The wordmark wears it, and so does every
+   button, so an action reads as the same mark as home. */
+%pigment-block
   background: var(--hot)
   color: var(--paper)
+  border: none
+  border-radius: 0
+  box-shadow: none
   padding: 0.55rem 0.85rem 0.475rem
+  font-family: var(--font-kimura)
   font-size: 0.9375rem
   font-weight: 700
   letter-spacing: 0.18em
   text-transform: uppercase
   line-height: 1
+  text-decoration: none
+  cursor: pointer
+  transition: background 0.15s
+
+  &:hover,
+  &:focus-visible
+    background: var(--hot-dark)
+    color: var(--paper)
+    text-decoration: none
+
+.nav-logo
+  @extend %pigment-block
 
 .nav-links
   display: flex
@@ -758,24 +777,16 @@ input[type="submit"],
 input[type="button"],
 button,
 .wp-block-search__button,
-.button
-  font-family: var(--font-kimura)
-  font-size: 0.6875rem
-  font-weight: 600
-  letter-spacing: 0.14em
-  text-transform: uppercase
-  background: var(--ink)
-  color: var(--paper)
-  border: none
-  border-radius: 0
-  box-shadow: none
-  padding: 0.625rem 1rem
-  cursor: pointer
-  transition: background 0.2s, color 0.2s
-
-  &:hover
-    background: var(--gold)
-    color: var(--ink)
+.button,
+.wp-element-button,
+.wp-block-button__link,
+.wp-block-file .wp-block-file__button,
+.single .article-content a.wp-block-file__button,
+.page .article-content a.wp-block-file__button,
+.single .article-content a.wp-block-button__link,
+.page .article-content a.wp-block-button__link
+  @extend %pigment-block
+  display: inline-block
 
 
 /* ── COMMENTS ── */
