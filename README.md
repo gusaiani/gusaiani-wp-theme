@@ -32,6 +32,12 @@ darkens to `$hot_dark` `#c22e23` over 0.15s, with no underline. Selectors
 inside `.article-content` are qualified with `a.` so they beat the post link
 rule's red underline.
 
+**Focus.** Highwind's `a:focus { outline: thin dotted }` is overridden in
+`sass/base.sass`: links lose the outline on `:focus:not(:focus-visible)`, so
+a link restored to focus after a mouse click and Back stays clean, and
+keyboard focus gets a 2px `var(--hot)` ring with a 2px offset. This covers
+the post title, the excerpt link (`.body-link-to-post`) and every other link.
+
 **Layout.** Highwind floats `.content` and `.sidebar` as percentage columns.
 `sass/min-769px/base.sass` turns `.content-wrapper` into a grid instead and
 unwinds those widths. The header also carries `.content-wrapper`, so every
