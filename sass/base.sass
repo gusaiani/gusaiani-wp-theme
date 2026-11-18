@@ -179,6 +179,8 @@ img
 
 .nav-logo
   @extend %pigment-block
+  white-space: nowrap
+  flex-shrink: 0
 
 .nav-links
   display: flex
@@ -434,6 +436,11 @@ body:not(.single) article.page
         content: ''
         width: 0
 
+    li.categories
+      display: flex
+      flex-wrap: wrap
+      gap: 0.5rem
+
     li.categories a
       display: inline-block
       font-size: 0.6875rem
@@ -447,6 +454,7 @@ body:not(.single) article.page
       &:hover
         background: var(--ink)
         color: var(--paper)
+        text-decoration: none
 
     li.comment,
     li.author
@@ -554,6 +562,11 @@ body:not(.single) article.page
       content: ''
       width: 0
 
+  li.categories
+    display: flex
+    flex-wrap: wrap
+    gap: 0.5rem
+
   li.categories a
     display: inline-block
     font-size: 0.6875rem
@@ -562,6 +575,9 @@ body:not(.single) article.page
     padding: 0.25rem 0.5rem
     background: var(--gray)
     color: var(--ink)
+
+    &:hover
+      text-decoration: none
 
   li.comment,
   li.author
@@ -898,12 +914,19 @@ input[type="radio"]
     align-items: flex-start
     gap: 2rem
 
+/* "Gustavo Saiani Blog" is about 270px wide, so the links need the room
+   before they are tightened, then dropped, ahead of the phone breakpoint. */
+@media (max-width: 900px)
+  .nav-links
+    gap: 1.1rem
+
+@media (max-width: 768px)
+  .nav-links
+    display: none
+
 @media (max-width: 600px)
   .nav
     padding: 0 1.25rem
-
-  .nav-links
-    display: none
 
   .home .header
     padding: 2.5rem 1.25rem 2rem

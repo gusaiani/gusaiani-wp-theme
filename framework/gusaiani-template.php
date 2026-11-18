@@ -49,8 +49,42 @@ if ( ! function_exists( 'gusaiani_icon' ) ) {
 
 
 /**
- * The fixed top bar. The wordmark is the one mark carrying pigment;
- * the links point back at the sections of the main site.
+ * Post meta, overriding Highwind's.
+ *
+ * Highwind prints the categories with the_category( ', ' ), which leaves a
+ * literal comma between the chips. An empty separator is no help, since
+ * core then wraps the links in a <ul>. So the links are printed here with
+ * nothing between them, and the chip spacing comes from CSS (flex gap).
+ */
+if ( ! function_exists( 'highwind_post_meta' ) ) {
+	function highwind_post_meta() {
+		if ( is_page() ) {
+			return;
+		}
+		?>
+		<aside class="post-meta">
+			<ul>
+				<li class="categories">
+					<?php foreach ( get_the_category() as $category ) : ?>
+						<a href="<?php echo esc_url( get_category_link( $category ) ); ?>" rel="category tag"><?php echo esc_html( $category->name ); ?></a>
+					<?php endforeach; ?>
+				</li>
+				<li class="comment"><?php comments_popup_link( __( '0 Comments', 'highwind' ), __( '1 Comment', 'highwind' ), __( '% Comments', 'highwind' ) ); ?></li>
+				<?php the_tags( '<li class="tags">', ', ', '</li>' ); ?>
+				<?php if ( apply_filters( 'highwind_meta_author', true ) ) { ?>
+					<li class="author"><?php if ( apply_filters( 'highwind_meta_author_link', true ) ) { the_author_posts_link(); } else { the_author(); } ?></li>
+				<?php } // endif ?>
+			</ul>
+		</aside><!-- /.post-meta -->
+		<?php
+	}
+}
+
+
+/**
+ * The fixed top bar. The wordmark is the one mark carrying pigment and
+ * links to the blog home; the links point back at the sections of the
+ * main site.
  * Hooked into highwind_body_top().
  */
 if ( ! function_exists( 'gusaiani_top_bar' ) ) {
@@ -59,7 +93,7 @@ if ( ! function_exists( 'gusaiani_top_bar' ) ) {
 		?>
 		<nav class="nav" role="navigation">
 			<div class="nav-inner">
-				<a class="nav-logo" href="<?php echo esc_url( $site ); ?>"><?php bloginfo( 'name' ); ?></a>
+				<a class="nav-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">Gustavo Saiani Blog</a>
 				<ul class="nav-links">
 					<li><a href="<?php echo esc_url( $site ); ?>/#experience">Experience</a></li>
 					<li><a href="<?php echo esc_url( $site ); ?>/#projects">Projects</a></li>
