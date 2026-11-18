@@ -12,7 +12,7 @@ function my_theme_enqueue_styles() {
 if ( ! function_exists( 'gusaiani_add_scripts' ) ) {
 	function gusaiani_add_scripts() {
 		// Enqueue styles
-		wp_enqueue_style( 'gusaiani-styles', get_stylesheet_uri(), array(), '2.0.4' );
+		wp_enqueue_style( 'gusaiani-styles', get_stylesheet_uri(), array(), '2.0.5' );
 
 		// Enqueue Scripts
 		wp_enqueue_script( 'gusaiani-plugins', get_template_directory_uri() . '/framework/js/plugins.min.js', array( 'jquery' ), '', true );
@@ -49,10 +49,11 @@ function gusaiani_layout_hooks() {
 }
 add_action( 'init', 'gusaiani_layout_hooks' );
 
-// Preload the two variable faces so the first paint is not a fallback.
+// Preload the three variable faces so the first paint is not a fallback.
 function gusaiani_preload_fonts() {
 	$dir = get_stylesheet_directory_uri() . '/fonts/';
-	echo '<link rel="preload" href="' . esc_url( $dir . 'KimuraSansVF.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
+	echo '<link rel="preload" href="' . esc_url( $dir . 'VinilaVF.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
+	echo '<link rel="preload" href="' . esc_url( $dir . 'MotivaSansVF.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	echo '<link rel="preload" href="' . esc_url( $dir . 'CarbonaVF.woff2' ) . '" as="font" type="font/woff2" crossorigin>' . "\n";
 }
 add_action( 'wp_head', 'gusaiani_preload_fonts', 1 );

@@ -10,13 +10,19 @@ The blog carries the same design system as
 [gustavosaiani.com](https://gustavosaiani.com): the Iro palette, the Plau
 typefaces, and the fixed dark bar / dark footer that bookend the page.
 
-**Type.** Two self-hosted Plau variable fonts in `fonts/`, declared as
-`@font-face` in `sass/base.sass` and preloaded from `functions.php`:
+**Type.** Three self-hosted Plau variable fonts in `fonts/`, declared as
+`@font-face` in `sass/base.sass` and preloaded from `functions.php`. Two tokens
+on `:root` pick between them: `--font-text` and `--font-display`.
 
 | File | Family | Axes used | Where |
 | --- | --- | --- | --- |
-| `KimuraSansVF.woff2` | Kimura Sans | `wght 100-900`, `opsz 12-72` | Everything. `font-optical-sizing: auto` lets display sizes pick up the tighter cut on their own. |
+| `VinilaVF.woff2` | Vinila | `wght 100-900`, `wdth 75-125`, `slnt` | `--font-text`: body, labels, nav, buttons. |
+| `MotivaSansVF.woff2` | Motiva Sans | `wght 100-900` | `--font-display`: `h1` to `h6`, section, post, page and hero titles, all at 700. |
 | `CarbonaVF.woff2` | Carbona | `wght 200-900`, `MONO 100` | `code`, `pre`, `kbd`. |
+
+Vinila's `wdth` axis defaults to 75, which is condensed. Its `@font-face`
+declares `font-stretch: 75% 125%` so that `font-stretch: normal` renders the
+100 width instead of falling back to the condensed default.
 
 **Colour.** Tokens live in `sass/mixins/colors.sass` and are re-exported as CSS
 custom properties on `:root`. Colour lives in planes and marks, never in body
@@ -27,7 +33,7 @@ ink on paper.
 **Buttons.** Every button (form submits, the search button, core
 `.wp-element-button`, `.wp-block-button__link`, and the file block's Download
 button) shares the `%pigment-block` placeholder in `sass/base.sass` with the
-top bar wordmark: vermilion fill, zero radius, uppercase Kimura at 700. Hover
+top bar wordmark: vermilion fill, zero radius, uppercase Vinila at 700. Hover
 darkens to `$hot_dark` `#c22e23` over 0.15s, with no underline. Selectors
 inside `.article-content` are qualified with `a.` so they beat the post link
 rule's red underline.
