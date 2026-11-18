@@ -67,6 +67,9 @@ Three pieces of markup are added on top of Highwind, all defined in
 Posts render as cards on the index, archives and search (two columns above
 769px, one below); single posts get a 680px measure.
 
+`favicon.svg` is a copy of `public/favicon.svg` from the gustavosaiani.com
+repo, linked from `wp_head` by `gusaiani_favicon()`. Update both together.
+
 There is no build step for the fonts or the markup. The only build is Sass.
 
 ## Dependencies
