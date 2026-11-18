@@ -1,13 +1,22 @@
 /* ──────────────────────────────────────────────────────────────
    Typefaces: Plau retail variable fonts, self-hosted.
-   Kimura Sans carries the whole system (opsz 12-72 means display
-   sizes pick up the tighter cut on their own). Carbona's MONO axis
-   gives a mono that belongs to the same family as the text face.
+   Vinila carries text, labels, nav and buttons. Motiva Sans sets
+   the headings at 700. Carbona's MONO axis gives the code face.
    ────────────────────────────────────────────────────────────── */
 
+/* Vinila's wdth axis defaults to 75 (condensed). Declaring the
+   range lets font-stretch: normal pick the 100 width. */
 @font-face
-  font-family: "Kimura Sans"
-  src: url("fonts/KimuraSansVF.woff2") format("woff2")
+  font-family: "Vinila"
+  src: url("fonts/VinilaVF.woff2") format("woff2")
+  font-weight: 100 900
+  font-stretch: 75% 125%
+  font-style: normal
+  font-display: swap
+
+@font-face
+  font-family: "Motiva Sans"
+  src: url("fonts/MotivaSansVF.woff2") format("woff2")
   font-weight: 100 900
   font-style: normal
   font-display: swap
@@ -37,22 +46,22 @@
   --bar-line: #{$bar_line}
   --max-width: #{$max_width}
   --nav-height: 60px
-  --font-kimura: "Kimura Sans", "Helvetica Neue", Arial, sans-serif
+  --font-text: "Vinila", "Helvetica Neue", Arial, sans-serif
+  --font-display: "Motiva Sans", "Helvetica Neue", Arial, sans-serif
   --font-carbona: "Carbona", ui-monospace, "SF Mono", Menlo, monospace
 
 
 /* ── BASE ── */
 
 html
-  font-family: var(--font-kimura)
+  font-family: var(--font-text)
   font-weight: 400
   background: var(--paper)
   color-scheme: light
   scroll-behavior: smooth
 
 body
-  font-family: var(--font-kimura)
-  font-optical-sizing: auto
+  font-family: var(--font-text)
   background: var(--paper)
   color: var(--ink)
   line-height: 1.65
@@ -63,8 +72,10 @@ body
   &.content-sidebar .content
     max-width: none
 
-h1, h2, h3, h4, h5, h6, .heading, .alpha, .beta, .gamma, .delta
-  font-family: var(--font-kimura)
+h1, h2, h3, h4, h5, h6, .heading, .alpha, .beta, .gamma, .delta,
+.section-title, .archive-title, .entry-title, .post-title, .page-title,
+.hero-title
+  font-family: var(--font-display)
   color: var(--ink)
 
 a
@@ -172,7 +183,7 @@ img
   border-radius: 0
   box-shadow: none
   padding: 0.55rem 0.85rem 0.475rem
-  font-family: var(--font-kimura)
+  font-family: var(--font-text)
   font-size: 0.9375rem
   font-weight: 700
   letter-spacing: 0.18em
@@ -354,14 +365,14 @@ img
 .archive-header,
 .entry-title
   font-size: clamp(1.75rem, 4vw, 2.5rem)
-  font-weight: 900
+  font-weight: 700
   letter-spacing: -0.03em
   line-height: 1.1
   color: var(--ink)
   margin-bottom: 2rem
 
   span
-    font-weight: 900
+    font-weight: 700
 
 .page-header
   margin-bottom: 2rem
@@ -409,7 +420,7 @@ body:not(.single) article.page
 
   .post-title
     font-size: 1.25rem
-    font-weight: 900
+    font-weight: 700
     letter-spacing: -0.02em
     line-height: 1.25
     margin-bottom: 0.625rem
@@ -500,7 +511,7 @@ body:not(.single) article.page
 .page .post-title,
 .page-title
   font-size: clamp(1.75rem, 4vw, 2.5rem)
-  font-weight: 900
+  font-weight: 700
   letter-spacing: -0.03em
   line-height: 1.1
   margin-bottom: 0
@@ -519,7 +530,7 @@ body:not(.single) article.page
     margin-bottom: 1.25rem
 
   h1, h2, h3, h4
-    font-weight: 900
+    font-weight: 700
     letter-spacing: -0.02em
     line-height: 1.2
     margin: 2.25rem 0 0.875rem
@@ -787,7 +798,7 @@ input[type="text"],
 input[type="email"],
 input[type="url"],
 textarea
-  font-family: var(--font-kimura)
+  font-family: var(--font-text)
   font-size: 0.8125rem
   color: var(--ink)
   background: var(--canvas)
@@ -872,7 +883,7 @@ input[type="radio"]
 
 .site-footer-contact h2
   font-size: clamp(1.75rem, 4vw, 2.5rem)
-  font-weight: 900
+  font-weight: 700
   letter-spacing: -0.03em
   line-height: 1.1
   color: var(--bar-ink)
