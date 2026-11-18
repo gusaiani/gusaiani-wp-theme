@@ -58,6 +58,13 @@ function gusaiani_preload_fonts() {
 }
 add_action( 'wp_head', 'gusaiani_preload_fonts', 1 );
 
+// Same favicon as gustavosaiani.com: the vermilion square with a G.
+// favicon.svg is a copy of public/favicon.svg in that repo.
+function gusaiani_favicon() {
+	echo '<link rel="icon" type="image/svg+xml" href="' . esc_url( get_stylesheet_directory_uri() . '/favicon.svg' ) . '">' . "\n";
+}
+add_action( 'wp_head', 'gusaiani_favicon', 2 );
+
 // Set excerpt length to 20 words
 function custom_excerpt_length( $length ) {
     return 20;
