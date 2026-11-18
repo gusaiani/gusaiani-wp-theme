@@ -24,6 +24,14 @@ text: vermilion `#e23a2e` is identity (the wordmark, the section squares, the
 link rules), gold `#c8a03c` is interaction (hover states), everything else is
 ink on paper.
 
+**Buttons.** Every button (form submits, the search button, core
+`.wp-element-button`, `.wp-block-button__link`, and the file block's Download
+button) shares the `%pigment-block` placeholder in `sass/base.sass` with the
+top bar wordmark: vermilion fill, zero radius, uppercase Kimura at 700. Hover
+darkens to `$hot_dark` `#c22e23` over 0.15s, with no underline. Selectors
+inside `.article-content` are qualified with `a.` so they beat the post link
+rule's red underline.
+
 **Layout.** Highwind floats `.content` and `.sidebar` as percentage columns.
 `sass/min-769px/base.sass` turns `.content-wrapper` into a grid instead and
 unwinds those widths. The header also carries `.content-wrapper`, so every
