@@ -67,6 +67,11 @@ Three pieces of markup are added on top of Highwind, all defined in
 Posts render as cards on the index, archives and search (two columns above
 769px, one below); single posts get a 680px measure.
 
+The whole card is clickable. The title link's `::after` is stretched over the
+card (`position: absolute; inset: 0`), with the title itself reset to
+`position: static` because Highwind makes headings relative. Category chips sit
+above the overlay at `z-index: 2`, so they still go to their category pages.
+
 `favicon.svg` is a copy of `public/favicon.svg` from the gustavosaiani.com
 repo, linked from `wp_head` by `gusaiani_favicon()`. Update both together.
 
